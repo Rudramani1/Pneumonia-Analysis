@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Awareness & Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>.instructions-list {
+        font-family: 'Poppins', sans-serif;
+        padding-left: 20px;
+        counter-reset: instruction-counter;
+      }
+      
+      .instructions-list li {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      .instructions-list li::marker {
+        font-weight: 600;
+        color: #0287e8; /* adjust color as needed */
+      }
+      </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"> 🫁 Lung<b style="color: pink;">Care</b></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#about">Prevention</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Understanding Lung Cancer</h1>
+            <p class="hero-subtitle">Early detection saves lives. Learn about prevention and get your CT scan analyzed.</p>
+            <a href="#analysis" class="cta-button">Get Started</a>
+        </div>
+        <div class="hero-overlay"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content">
+        <section id="about" class="info-section">
+            <h2>What is Lung Cancer?</h2>
+            <p class="section-intro">Lung cancer begins in the lungs and occurs when cells in the lung grow out of control. These abnormal cells can form tumors and spread to other parts of the body.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>Risk Factors</h3>
+                    <ul>
+                        <li>Smoking</li>
+                        <li>Exposure to secondhand smoke</li>
+                        <li>Exposure to radon gas</li>
+                        <li>Family history</li>
+                        <li>Environmental factors</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Prevention</h3>
+                    <ul>
+                        <li>Don't smoke or quit smoking</li>
+                        <li>Avoid secondhand smoke</li>
+                        <li>Test your home for radon</li>
+                        <li>Exercise regularly</li>
+                        <li>Maintain a healthy diet</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">🔔</div>
+                    <h3>Warning Signs</h3>
+                    <ul>
+                        <li>Persistent cough</li>
+                        <li>Chest pain</li>
+                        <li>Shortness of breath</li>
+                        <li>Unexplained weight loss</li>
+                        <li>Coughing up blood</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="analysis-section">
+            <h2>CT Scan Analysis</h2>
+            <h1 class="section-intro">
+              Early detection is crucial for successful treatment. Our AI-powered tool can help analyze your CT scan images.
+            </h1>
+            <h3 style="padding-bottom: 20px;
+            font-size: 25px;
+            padding-left: 20px;">Instructions :- </h3>
+<ol class="instructions-list" >
+  <li> 💥Point the camera only at the CT scan.</li>
+  <li> 💥Complete CT scan image should be captured.</li>
+  <li> 💥Ensure that the CT scan is in focus.</li>
+  <li> 💥No zoom should be applied that crops out the CT scan.</li>
+</ol>
+
+            
+            <button id="showAnalysisBtn" class="analyze-btn" style="margin-bottom: 80px; margin-top: 50px;">Start Analysis</button>
+          
+            <div id="analysisTools" class="hidden">
+              <div class="analysis-options">
+                <button onclick="initWebcam()" class="option-btn">Use Webcam</button>
+                <button onclick="stopWebcam()" class="option-btn">Stop Webcam</button>
+                
+
+              </div>
+              <div class="analysis-options">
+              <button onclick="stopWebcam()" class="option-btn">Import file: <input type="file" id="fileInput" accept="image/*" "> </button></div>
+          
+              <div class="tool-container">
+                <div id="webcam-section" class="hidden">
+                  <h3>Webcam Analysis</h3>
+                  <div id="webcam-container" class="webcam-container"></div>
+                </div>
+          
+                <div class="upload-section">
+                  <!-- Make the entire upload area clickable -->
+                  <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" accept="image/*" class="file-input">
+                    <div class="upload-content">
+                      <div class="upload-icon">📁</div>
+                      <p>Drag & drop your CT scan or click to browse</p>
+                    </div>
+                  </div>
+                  <div class="preview-container">
+                    <img id="previewImage" class="hidden">
+                  </div>
+                  <button onclick="analyzeUpload()" class="analyze-btn">Analyze Image</button>
+                </div>
+          
+                <div id="results-section" class="hidden">
+                  <h3>Analysis Results</h3>
+                  <div id="label-container" class="results-grid"></div>
+                  <div id="recommendations" class="recommendations-container"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <script>
+            // When the user clicks anywhere in the upload area, trigger the hidden file input
+            document.getElementById('uploadArea').addEventListener('click', function() {
+              document.getElementById('fileInput').click();
+            });
+          </script>
+          
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Important Notice</h4>
+                <p>This tool is for educational purposes only and should not replace professional medical advice.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Emergency</h4>
+                <p>If you're experiencing severe symptoms, please contact emergency services immediately.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
